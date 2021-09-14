@@ -1,12 +1,7 @@
-/* eslint-disable comma-dangle */
-/* eslint-disable quotes */
-/* eslint-disable function-paren-newline */
-/* eslint-disable implicit-arrow-linebreak */
-
-const Movie = require("../models/movie");
-const BAD_REQUEST = require("../errors/BAD_REQUEST");
-const FORBIDDEN = require("../errors/FORBIDDEN");
-const NOT_FOUND = require("../errors/NOT_FOUND");
+const Movie = require('../models/movie');
+const BAD_REQUEST = require('../errors/BAD_REQUEST');
+const FORBIDDEN = require('../errors/FORBIDDEN');
+const NOT_FOUND = require('../errors/NOT_FOUND');
 
 const OK = 200;
 const CREATED = 201;
@@ -26,24 +21,22 @@ const deleteMovie = (req, res, next) => {
   const { movieId } = req.params;
   Movie.findById(movieId)
     .orFail(() => {
-      throw new NOT_FOUND("Фильм с указанным id не найден");
+      throw new NOT_FOUND('Фильм с указанным id не найден');
     })
     .then((movie) => {
       if (req.user._id !== movie.owner.toString()) {
-        next(new FORBIDDEN("Чужие фильмы удалять нельзя"));
+        next(new FORBIDDEN('Чужие фильмы удалять нельзя'));
       } else {
         movie
           .remove()
-          .then(() =>
-            res.status(OK).send({
-              message: "Фильм успешно удалён",
-            })
-          )
+          .then(() => res.status(OK).send({
+            message: 'Фильм успешно удалён',
+          }))
           .catch(next);
       }
     })
     .catch((err) => {
-      if (err.name === "CastError") {
+      if (err.name === 'CastError') {
         next(new BAD_REQUEST(`Переданы некорректные данные: ${err}`));
       } else {
         next(err);
@@ -81,11 +74,11 @@ const createMovie = (req, res, next) => {
   })
     .then((movie) => res.status(CREATED).send({ data: movie }))
     .catch((err) => {
-      if (err.name === "ValidationError") {
+      if (err.name === 'ValidationError') {
         next(
           new BAD_REQUEST(
-            `Переданы некорректные данные при создании фильма: ${err}`
-          )
+            `Переданы некорректные данные при создании фильма: ${err}`,
+          ),
         );
       } else {
         next(err);
