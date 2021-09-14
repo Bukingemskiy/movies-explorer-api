@@ -35,15 +35,11 @@ const getOwnerUser = (req, res, next) => {
 
 const createUser = (req, res, next) => {
   const { name, email, password } = req.body;
-  //  if (!email || !password) {
-  //  next(new BAD_REQUEST("Поля email и пароль должны быть заполнены"));
-  //    return;
-  //  }
   bcrypt.hash(password, 10).then((hash) => {
     User.create({ name, email, password: hash })
-      .then((user) =>
+      .then(() =>
         res.status(CREATED).send({
-          user,
+          data: { name, email },
         })
       )
       .catch((err) => {
@@ -60,10 +56,6 @@ const createUser = (req, res, next) => {
 
 const login = (req, res, next) => {
   const { email, password } = req.body;
-  //  if (!email || !password) {
-  //    next(new BAD_REQUEST("Поля email и пароль должны быть заполнены"));
-  //    return;
-  //  }
   User.findOne({ email })
     .select("+password")
     .then((user) => {
@@ -91,7 +83,12 @@ const login = (req, res, next) => {
             }
           );
           res
-            .cookie("jwt", token, { httpOnly: true, sameSite: true })
+            .cookie("jwt", token, {
+              maxAge: 3600000 * 24 * 90,
+              httpOnly: true,
+              sameSite: "None",
+              secure: true,
+            })
             .status(OK)
             .send({ token });
         }
@@ -120,12 +117,10 @@ const updateProfileUser = (req, res, next) => {
     .orFail(new Error("NotFound"))
     .then((user) => res.status(OK).send({ data: user }))
     .catch((err) => {
-      if (err.name === "ValidationError") {
-        next(
-          new BAD_REQUEST(
-            `Переданы некорректные данные при обновлении профиля: ${err}`
-          )
-        );
+      if (err.name === "MongoError" && err.code === 11000) {
+        next(new CONFLICT("Пользователь с таким email уже существует"));
+      } else if (err.name === "ValidationError") {
+        next(new BAD_REQUEST(`Переданы некорректные данные: ${err}`));
       } else if (err.message === "NotFound") {
         next(new NOT_FOUND(`Пользователь по данному id не найден: ${err}`));
       } else {

@@ -32,10 +32,14 @@ const deleteMovie = (req, res, next) => {
       if (req.user._id !== movie.owner.toString()) {
         next(new FORBIDDEN("Чужие фильмы удалять нельзя"));
       } else {
-        movie.remove();
-        res.status(OK).send({
-          message: "Фильм успешно удалён",
-        });
+        movie
+          .remove()
+          .then(() =>
+            res.status(OK).send({
+              message: "Фильм успешно удалён",
+            })
+          )
+          .catch(next);
       }
     })
     .catch((err) => {

@@ -8,6 +8,7 @@ const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 const { errors, celebrate, Joi } = require("celebrate");
 const { createUser, login } = require("./controllers/users");
+const cors = require("./middlewares/cors");
 const { requestLogger, errorLogger } = require("./middlewares/logger");
 const auth = require("./middlewares/auth");
 const errorsHandler = require("./middlewares/errorsHandler");
@@ -24,6 +25,7 @@ mongoose.connect("mongodb://localhost:27017/bitfilmsdb", {
 });
 
 const app = express();
+app.use(cors);
 app.use(express.json());
 app.use(cookieParser());
 app.use(requestLogger);
