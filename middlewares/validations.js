@@ -83,19 +83,25 @@ const validateCreateMovie = celebrate({
         'any.required': 'Поле "description" должно быть заполнено',
       }),
     image: Joi.string()
-      .required().uri()
+      .required().pattern(
+        /^(https?:\/\/)(www\.)?([\w\W]{1,})(\.)([\w\W]{1,})([\w\W]{1,})#?$/,
+      )
       .message('Поле "image" должно быть валидной ссылкой')
       .messages({
         'any.required': 'Поле "image" должно быть заполнено',
       }),
     trailer: Joi.string()
-      .required().uri()
+      .required().pattern(
+        /^(https?:\/\/)(www\.)?([\w\W]{1,})(\.)([\w\W]{1,})([\w\W]{1,})#?$/,
+      )
       .message('Поле "trailer" должно быть валидной ссылкой')
       .messages({
         'any.required': 'Поле "trailer" должно быть заполнено',
       }),
     thumbnail: Joi.string()
-      .required().uri()
+      .required().pattern(
+        /^(https?:\/\/)(www\.)?([\w\W]{1,})(\.)([\w\W]{1,})([\w\W]{1,})#?$/,
+      )
       .message('Поле "thumbnail" должно быть валидной ссылкой')
       .messages({
         'any.required': 'Поле "thumbnail" должно быть заполнено',
