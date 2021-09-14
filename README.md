@@ -1,18 +1,5 @@
-# **"Mesto Russia"**
+# [ссылка на бэкенд](https://api.prof.movies.explorer.nomoredomains.club/)
 
 <br />
 
-## _Проект "Mesto Russia" представляет собой интерактивную страницу, куда можно добавлять и удалять фотографии, а также оценивать понравившиеся фото с помощью лайков._
-
-<br />
-
----
-
-<br />
-
-### Данный проект выполнен с использованием языков программирования: Hyper Text Mark Langyage, Cascading Style Sheets и JavaScript исключительно в развлекательных целях.
-
-<br />
-<br />
-
-# [ссылка на GitHub Pages](https://bukingemskiy.github.io/mesto/)
+## **ip адрес сервера** _178.154.252.166_
