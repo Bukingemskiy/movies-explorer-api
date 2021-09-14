@@ -1,8 +1,6 @@
-/* eslint-disable quotes */
-
 module.exports = {
-  extends: ["airbnb-base"],
+  extends: ['airbnb-base'],
   rules: {
-    "no-underscore-dangle": ["error", { allow: ["_id"] }],
+    'no-underscore-dangle': ['error', { allow: ['_id'] }],
   },
 };

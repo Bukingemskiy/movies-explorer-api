@@ -1,20 +1,13 @@
-/* eslint-disable comma-dangle */
-/* eslint-disable quotes */
+const router = require('express').Router();
+const { validateUpdateProfileUser } = require('../middlewares/validations');
+const { getOwnerUser, signOut, updateProfileUser } = require('../controllers/users');
 
-const { celebrate, Joi } = require("celebrate");
-const router = require("express").Router();
-const { getOwnerUser, updateProfileUser } = require("../controllers/users");
-
-router.get("/me", getOwnerUser);
+router.get('/me', getOwnerUser);
+router.get('/signout', signOut);
 router.patch(
-  "/me",
-  celebrate({
-    body: Joi.object().keys({
-      name: Joi.string().required().min(2).max(30),
-      email: Joi.string().required().email(),
-    }),
-  }),
-  updateProfileUser
+  '/me',
+  validateUpdateProfileUser,
+  updateProfileUser,
 );
 
 module.exports = router;

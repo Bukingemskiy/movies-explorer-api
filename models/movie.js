@@ -1,7 +1,5 @@
-/* eslint-disable quotes */
-
-const mongoose = require("mongoose");
-const validator = require("validator");
+const mongoose = require('mongoose');
+const validator = require('validator');
 
 const movieSchema = new mongoose.Schema({
   country: {
@@ -30,7 +28,7 @@ const movieSchema = new mongoose.Schema({
     validate: {
       validator(link) {
         return validator.isURL(link, {
-          protocols: ["http", "https", "ftp"],
+          protocols: ['http', 'https', 'ftp'],
           require_protocol: true,
         });
       },
@@ -42,7 +40,7 @@ const movieSchema = new mongoose.Schema({
     validate: {
       validator(link) {
         return validator.isURL(link, {
-          protocols: ["http", "https", "ftp"],
+          protocols: ['http', 'https', 'ftp'],
           require_protocol: true,
         });
       },
@@ -54,7 +52,7 @@ const movieSchema = new mongoose.Schema({
     validate: {
       validator(link) {
         return validator.isURL(link, {
-          protocols: ["http", "https", "ftp"],
+          protocols: ['http', 'https', 'ftp'],
           require_protocol: true,
         });
       },
@@ -63,7 +61,7 @@ const movieSchema = new mongoose.Schema({
   owner: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
-    ref: "user",
+    ref: 'user',
   },
   movieId: {
     type: Number,
@@ -83,4 +81,4 @@ const movieSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("movie", movieSchema);
+module.exports = mongoose.model('movie', movieSchema);
