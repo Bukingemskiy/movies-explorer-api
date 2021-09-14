@@ -3,17 +3,17 @@ const { celebrate, Joi } = require('celebrate');
 const validateCreateUser = celebrate({
   body: Joi.object().keys({
     name: Joi.string().required().min(2).max(30)
-    //  .message('Имя должно содержать от 2 до 30 символов')
+      .message('Имя должно содержать от 2 до 30 символов')
       .messages({
         'any.required': 'Поле "name" должно быть заполнено',
       }),
     email: Joi.string().required().email()
-    //  .message('Поле "email" должно быть валидным email-адресом')
+      .message('Поле "email" должно быть валидным email-адресом')
       .messages({
         'any.required': 'Поле "email" должно быть заполнено',
       }),
     password: Joi.string().required().min(8)
-    //  .message('Пароль должнен содержать не менее 8 символов')
+      .message('Пароль должнен содержать не менее 8 символов')
       .messages({
         'any.required': 'Поле "password" должно быть заполнено',
       }),
@@ -23,12 +23,12 @@ const validateCreateUser = celebrate({
 const validateLogin = celebrate({
   body: Joi.object().keys({
     email: Joi.string().required().email()
-    //  .message('Поле "email" должно быть валидным email-адресом')
+      .message('Поле "email" должно быть валидным email-адресом')
       .messages({
         'any.required': 'Поле "email" должно быть заполнено',
       }),
     password: Joi.string().required().min(8)
-    //  .message('Пароль должнен содержать не менее 8 символов')
+      .message('Пароль должнен содержать не менее 8 символов')
       .messages({
         'any.required': 'Поле "password" должно быть заполнено',
       }),
@@ -38,12 +38,12 @@ const validateLogin = celebrate({
 const validateUpdateProfileUser = celebrate({
   body: Joi.object().keys({
     name: Joi.string().required().min(2).max(30)
-    //  .message('Имя должно содержать от 2 до 30 символов')
+      .message('Имя должно содержать от 2 до 30 символов')
       .messages({
         'any.required': 'Поле "name" должно быть заполнено',
       }),
     email: Joi.string().required().email()
-    //  .message('Поле "email" должно быть валидным email-адресом')
+      .message('Поле "email" должно быть валидным email-адресом')
       .messages({
         'any.required': 'Поле "email" должно быть заполнено',
       }),
@@ -53,7 +53,7 @@ const validateUpdateProfileUser = celebrate({
 const validateDeleteMovie = celebrate({
   params: Joi.object().keys({
     movieId: Joi.string().required().length(24).hex()
-    //  .message('id фильма должнен содержать 24 символа')
+      .message('id фильма должнен содержать 24 символа')
       .messages({
         'any.required': 'Поле "movieId" должно быть заполнено',
       }),
@@ -71,7 +71,6 @@ const validateCreateMovie = celebrate({
         'any.required': 'Поле "director" должно быть заполнено',
       }),
     duration: Joi.number().required()
-    //  .message('Поле "duration" должно быть числом')
       .messages({
         'any.required': 'Поле "duration" должно быть заполнено',
       }),
@@ -85,24 +84,23 @@ const validateCreateMovie = celebrate({
       }),
     image: Joi.string()
       .required().uri()
-    //  .message('Поле "image" должно быть валидной ссылкой')
+      .message('Поле "image" должно быть валидной ссылкой')
       .messages({
         'any.required': 'Поле "image" должно быть заполнено',
       }),
     trailer: Joi.string()
       .required().uri()
-    //  .message('Поле "trailer" должно быть валидной ссылкой')
+      .message('Поле "trailer" должно быть валидной ссылкой')
       .messages({
         'any.required': 'Поле "trailer" должно быть заполнено',
       }),
     thumbnail: Joi.string()
       .required().uri()
-    //  .message('Поле "thumbnail" должно быть валидной ссылкой')
+      .message('Поле "thumbnail" должно быть валидной ссылкой')
       .messages({
         'any.required': 'Поле "thumbnail" должно быть заполнено',
       }),
     movieId: Joi.number().required()
-    //  .message('Поле "movieId" должно быть числом')
       .messages({
         'any.required': 'Поле "movieId" должно быть заполнено',
       }),

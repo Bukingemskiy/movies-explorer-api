@@ -23,11 +23,11 @@ mongoose.connect(NODE_ENV === 'production'
 const app = express();
 app.use(requestLogger);
 app.use(limiter);
-app.use(cors);
 app.use(express.json());
-app.use(router);
 app.use(cookieParser());
 app.use(helmet());
+app.use(cors);
+app.use(router);
 app.use(errorLogger);
 app.use(errors());
 app.use(errorsHandler);
