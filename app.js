@@ -1,24 +1,28 @@
-require('dotenv').config();
-const express = require('express');
-const mongoose = require('mongoose');
-const cookieParser = require('cookie-parser');
-const helmet = require('helmet');
-const { errors } = require('celebrate');
-const cors = require('./middlewares/cors');
-const router = require('./routes/index');
-const { requestLogger, errorLogger } = require('./middlewares/logger');
-const errorsHandler = require('./middlewares/errorsHandler');
-const limiter = require('./middlewares/rateLimiter');
+/* eslint-disable comma-dangle */
+/* eslint-disable quotes */
+
+require("dotenv").config();
+const express = require("express");
+const mongoose = require("mongoose");
+const cookieParser = require("cookie-parser");
+const helmet = require("helmet");
+const { errors } = require("celebrate");
+const cors = require("cors");
+const router = require("./routes/index");
+const { requestLogger, errorLogger } = require("./middlewares/logger");
+const errorsHandler = require("./middlewares/errorsHandler");
+const limiter = require("./middlewares/rateLimiter");
 
 const { PORT = 3000, NODE_ENV, MONGO_URL } = process.env;
-mongoose.connect(NODE_ENV === 'production'
-  ? MONGO_URL
-  : 'mongodb://localhost:27017/moviesdb', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useCreateIndex: true,
-  useFindAndModify: false,
-});
+mongoose.connect(
+  NODE_ENV === "production" ? MONGO_URL : "mongodb://localhost:27017/moviesdb",
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: false,
+  }
+);
 
 const app = express();
 app.use(requestLogger);
