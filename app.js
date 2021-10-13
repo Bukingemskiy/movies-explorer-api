@@ -30,7 +30,13 @@ app.use(limiter);
 app.use(express.json());
 app.use(cookieParser());
 app.use(helmet());
-app.use(cors);
+app.use(
+  cors({
+    origin: true,
+    exposedHeaders: "https://prof.movies.explorer.nomoredomains.club",
+    credentials: true,
+  })
+);
 app.use(router);
 app.use(errorLogger);
 app.use(errors());
