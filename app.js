@@ -30,22 +30,7 @@ app.use(limiter);
 app.use(express.json());
 app.use(cookieParser());
 app.use(helmet());
-app.use(
-  cors({
-    origin: true,
-    exposedHeaders: "https://prof.movies.explorer.nomoredomains.club",
-    credentials: true,
-  })
-);
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", req.headers.origin);
-  res.header("Access-Control-Allow-Methods", "DELETE, PUT, GET, POST");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  next();
-});
+app.use(cors());
 app.use(router);
 app.use(errorLogger);
 app.use(errors());
