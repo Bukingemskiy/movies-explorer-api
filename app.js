@@ -32,7 +32,7 @@ app.use(cookieParser());
 app.use(helmet());
 app.use(
   cors({
-    origin: "https://prof.movies.explorer.nomoredomains.club/",
+    origin: true,
     credentials: true,
   })
 );
