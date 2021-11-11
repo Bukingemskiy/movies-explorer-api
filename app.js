@@ -30,7 +30,12 @@ app.use(limiter);
 app.use(express.json());
 app.use(cookieParser());
 app.use(helmet());
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    credentials: true,
+  })
+);
 app.use(router);
 app.use(errorLogger);
 app.use(errors());
