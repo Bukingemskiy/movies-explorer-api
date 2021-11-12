@@ -4,7 +4,6 @@
 const DEFAULT_ALLOWED_METHODS = "GET,HEAD,PUT,PATCH,POST,DELETE";
 
 const allowedCors = [
-  "http://prof.movies.explorer.nomoredomains.club/",
   "https://prof.movies.explorer.nomoredomains.club",
   "localhost:3000",
 ];
